@@ -26,9 +26,11 @@ sample_data = [
 
 def match_gloves(gloves: List[Dict[str, str]]) -> List[str]:
     ordered = defaultdict(list)
-    valids = []
+    valids: List[str] = []
+    colors = []
     for glove in gloves:
         hand, color = glove.values()
+        colors.append(color)
         if hand == "L":
             if color in ordered["R"]:
                 ordered["R"].remove(color)
@@ -41,6 +43,12 @@ def match_gloves(gloves: List[Dict[str, str]]) -> List[str]:
                 valids.append(color)
             else:
                 ordered["R"].append(color)
+    pos = {}
+    for i, x in enumerate(colors):
+        if x not in pos:
+            pos[x] = i
+    sorted_second = sorted(valids, key=lambda x: pos.get(x, 999))
+    return sorted_second
 
     return valids
 
