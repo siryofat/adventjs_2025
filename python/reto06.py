@@ -1,6 +1,3 @@
-from collections import defaultdict
-from typing import Dict, List
-
 sample_data = [
     [
         {"hand": "L", "color": "red"},
@@ -24,33 +21,23 @@ sample_data = [
 ]
 
 
-def match_gloves(gloves: List[Dict[str, str]]) -> List[str]:
-    ordered = defaultdict(list)
-    valids: List[str] = []
-    colors = []
-    for glove in gloves:
-        hand, color = glove.values()
-        colors.append(color)
-        if hand == "L":
-            if color in ordered["R"]:
-                ordered["R"].remove(color)
-                valids.append(color)
-            else:
-                ordered["L"].append(color)
-        else:
-            if color in ordered["L"]:
-                ordered["L"].remove(color)
-                valids.append(color)
-            else:
-                ordered["R"].append(color)
-    pos = {}
-    for i, x in enumerate(colors):
-        if x not in pos:
-            pos[x] = i
-    sorted_second = sorted(valids, key=lambda x: pos.get(x, 999))
-    return sorted_second
+def match_gloves(gloves: list[dict[str, str]]) -> list[str]:
+    unmatched: dict[str, set[str]] = {}
+    result: list[str] = []
 
-    return valids
+    for g in gloves:
+        color = g["color"]
+        hand = g["hand"]
+        opp = "R" if hand == "L" else "L"
+
+        s = unmatched.setdefault(color, set())
+        if opp in s:
+            s.remove(opp)
+            result.append(color)  # pair formed now, preserves order
+        else:
+            s.add(hand)
+
+    return result
 
 
 for sample in sample_data:
