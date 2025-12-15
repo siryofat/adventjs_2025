@@ -1,16 +1,3 @@
-from typing import Literal
-
-board = """
-.....
-.*#.*
-.@...
-.....
-"""
-
-moves = ["DD", "U", "LL", "UUUUU", "RRRU", "RRRURR", "D", "R"]
-#        crash, suc, cra, suc, suc, suc, fail, fail
-
-
 def move_reno(board: str, moves: str) -> Literal["fail", "crash", "success"]:
     # Parse board
     lines = board.splitlines()
@@ -66,7 +53,3 @@ def move_reno(board: str, moves: str) -> Literal["fail", "crash", "success"]:
 
     # No star collected and no crash after processing all moves
     return "fail"
-
-
-for move in moves:
-    print(move_reno(board, move))
