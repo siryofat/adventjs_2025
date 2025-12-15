@@ -1,13 +1,3 @@
-tests = [
-    ("A", "B", 0),
-    ("F", "B", 1),
-    ("AAB", "BBA", 0),
-    ("AFA", "BBA", 1),
-    ("AFAB", "BBAF", 1),
-    ("AA", "FF", 2),
-]
-
-
 def elf_battle(elf1: str, elf2: str) -> int:
     RULES = {
         "A": {"A": (1, 1), "B": (0, 0), "F": (2, 1)},
@@ -35,9 +25,3 @@ def elf_battle(elf1: str, elf2: str) -> int:
         return 2
     else:
         return 1
-
-
-for test in tests:
-    elf1, elf2, expected = test
-    output = elf_battle(elf1, elf2)
-    print(f"{output=}, {expected=}, {'ok' if output == expected else '<--------'}")
