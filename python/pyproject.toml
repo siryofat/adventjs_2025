@@ -4,4 +4,10 @@ version = "0.1.0"
 description = "Resolviendo el AdventJs2025 con python"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "pytest>=9.0.2",
+]
+
+[tool.pytest.ini_options]
+
+pythonpath = ["."]
