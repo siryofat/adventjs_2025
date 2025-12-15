@@ -1,8 +1,10 @@
+from typing import Literal
+
+
 def move_reno(board: str, moves: str) -> Literal["fail", "crash", "success"]:
     # Parse board
     lines = board.splitlines()
     rows = len(lines)
-    cols = max((len(line) for line in lines), default=0)
 
     stars: set[tuple[int, int]] = set()
     obstacles: set[tuple[int, int]] = set()
