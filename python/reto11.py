@@ -1,11 +1,3 @@
-tests = [
-    ([".*.", "*#*", ".*."], 0),
-    (["...", ".*.", "..."], 1),
-    (["*.*", "...", "*#*"], 2),
-    ([".....", ".*.*.", "..#..", ".*.*.", "....."], 4),
-]
-
-
 def find_unsafe_gifts(warehouse: list[str]) -> int:
     gift = "*"
     cam = "#"
@@ -28,9 +20,3 @@ def find_unsafe_gifts(warehouse: list[str]) -> int:
                 if not cams:
                     unsafe += 1
     return unsafe
-
-
-for test in tests:
-    input, expected = test
-    res = find_unsafe_gifts(input)
-    print(f"{res=}, {expected=}, {'ok' if res == expected else 'Fail'}")
