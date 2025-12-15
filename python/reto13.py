@@ -34,9 +34,3 @@ def run_factory(factory: list[str]) -> str:
         c += dc
         if not (0 <= r < rows and 0 <= c < cols):
             return "broken"
-
-
-for test in tests:
-    input, expected = test
-    output = run_factory(input)
-    print(f"{output=}, {expected=}, {'ok' if output == expected else '<-------FAIL'}")
