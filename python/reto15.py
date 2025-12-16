@@ -2,6 +2,9 @@ import string
 
 
 def draw_table(data: list[dict[str, str | int]], sortBy: str) -> str:
+    if not data:
+        return ""
+
     ordered = sorted(data, key=lambda s: s[sortBy])
     first_keys = list(data[0].keys())
     all_keys = set(first_keys)

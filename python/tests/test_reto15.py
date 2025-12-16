@@ -31,3 +31,8 @@ def test_order_ints():
 | Doll     | 10 |
 +----------+----+"""
     assert draw_table(input, "quantity") == output
+
+
+def test_empty_data():
+    input = []
+    assert draw_table(input, "") == ""
