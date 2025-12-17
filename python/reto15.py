@@ -6,12 +6,14 @@ def draw_table(data: list[dict[str, str | int]], sortBy: str) -> str:
         return ""
 
     ordered = sorted(data, key=lambda s: s[sortBy])
-    first_keys = list(data[0].keys())
-    all_keys = set(first_keys)
-    for row in data[1:]:
-        all_keys.update(row.keys())
-    extra_keys = sorted(k for k in all_keys if k not in first_keys)
-    columns = first_keys + extra_keys
+
+    columns = []
+    seen = set()
+    for row in data:
+        for k in row.keys():
+            if k not in seen:
+                seen.add(k)
+                columns.append(k)
 
     pads = [max(len(str(r.get(k, ""))) for r in data) for k in columns]
     cols = string.ascii_uppercase[: len(columns)]
